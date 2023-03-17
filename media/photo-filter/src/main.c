@@ -13,6 +13,10 @@ int main(void)
     return EXIT_FAILURE;
   }
 
+  FILE *fp = fopen("./data/tigre.bmp", "rb");
+  bmp_manager__read_from_file(bmp_file_structure, fp);
+  fclose(fp);
+
   bmp_manager__free_bmp_file_structure(&bmp_file_structure);
   if (errno != BMP_MANAGER__ERROR_CODE__SUCCESS)
   {
