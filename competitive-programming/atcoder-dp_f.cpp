@@ -2,9 +2,7 @@
 
 using namespace std;
 
-typedef long unsigned int lui;
 const int MAX_N = 3005;
-const int MAX_C = 257;
 
 string s;
 string t;
