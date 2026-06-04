@@ -1,0 +1,41 @@
+services:
+  keycloak:
+    image: quay.io/keycloak/keycloak:26.6.2-2@sha256:f9ba7b2af90db8dc749a57ca9aedca51e840cb9224441ab546a968da941da900
+    container_name: keycloak_server
+    command: ["start-dev", "--hostname=http://localhost:8080", "--http-port=8080"]
+    environment:
+      - KEYCLOAK_ADMIN=admin
+      - KEYCLOAK_ADMIN_PASSWORD=admin
+    volumes:
+      - keycloak_data:/opt/keycloak/data/
+    ports:
+      - "127.0.0.1:8080:8080"
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+
+  sp:
+    build: ./sp
+    environment:
+      PYTHONDONTWRITEBYTECODE: "1"
+    ports:
+      - "127.0.0.1:8000:8000"
+    volumes:
+      - ./sp:/app:ro
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    develop:
+      watch:
+        - action: rebuild
+          path: ./sp/pyproject.toml
+        - action: rebuild
+          path: ./sp/uv.lock
+        - action: rebuild
+          path: ./sp/Dockerfile
+
+volumes:
+  keycloak_data:
+

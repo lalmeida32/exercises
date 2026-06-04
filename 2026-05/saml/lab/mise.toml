@@ -1,0 +1,2 @@
+[tasks]
+dev = "docker compose up --watch"
