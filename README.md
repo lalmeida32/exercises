@@ -1,6 +1,6 @@
 # Exercises
 
-Repository to store tests, exercises and small projects.
+Repository to store tests, exercises, notes and small projects.
 
 Unless mentioned explicitly, all the code and docs inside this repository were written manually, not by LLM tools. An LLM tool can be used for reviewing or helping in a specific train of thought, although.
 
